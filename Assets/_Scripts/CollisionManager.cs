@@ -239,26 +239,49 @@ public class CollisionManager : MonoBehaviour
                     a.isGrounded = true;
                 }
 
-                if (contactB.face == Vector3.right)
+                if (a.name == "Player")
                 {
-                    b.transform.position = new Vector3(b.transform.position.x - penetration, 0.0f, b.transform.position.z);
-                }
 
-                if (contactB.face == Vector3.left)
-                {
-                    b.transform.position = new Vector3(b.transform.position.x + penetration, 0.0f, b.transform.position.z);
-                }
+                    if (contactB.face == Vector3.right)
+                    {
+                        if (b.transform.position.y > 0)
+                        {
+                            b.transform.position = new Vector3(b.transform.position.x + penetration, b.transform.position.y, b.transform.position.z);
+                        }
+                        else
+                            b.transform.position = new Vector3(b.transform.position.x + penetration, 0.0f, b.transform.position.z);
+                    }
 
-                if (contactB.face == Vector3.forward)
-                {
-                    b.transform.position = new Vector3(b.transform.position.x, 0.0f, b.transform.position.z - penetration);
-                }
+                    if (contactB.face == Vector3.left)
+                    {
+                        if (b.transform.position.y > 0)
+                        {
+                            b.transform.position = new Vector3(b.transform.position.x - penetration, b.transform.position.y, b.transform.position.z);
+                        }
+                        else
+                            b.transform.position = new Vector3(b.transform.position.x - penetration, 0.0f, b.transform.position.z);
+                    }
 
-                if (contactB.face == Vector3.back)
-                {
-                    b.transform.position = new Vector3(b.transform.position.x, 0.0f, b.transform.position.z + penetration);
-                }
+                    if (contactB.face == Vector3.forward)
+                    {
+                        if (b.transform.position.y > 0)
+                        {
+                            b.transform.position = new Vector3(b.transform.position.x, b.transform.position.y, b.transform.position.z + penetration);
+                        }
+                        else
+                            b.transform.position = new Vector3(b.transform.position.x, 0.0f, b.transform.position.z + penetration);
+                    }
 
+                    if (contactB.face == Vector3.back)
+                    {
+                        if (b.transform.position.y > 0)
+                        {
+                            b.transform.position = new Vector3(b.transform.position.x, b.transform.position.y, b.transform.position.z - penetration);
+                        }
+                        else
+                            b.transform.position = new Vector3(b.transform.position.x, 0.0f, b.transform.position.z - penetration);
+                    }
+                }
                 // add the new contact
                 a.contacts.Add(contactB);
                 a.isColliding = true;
