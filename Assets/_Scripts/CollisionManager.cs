@@ -282,6 +282,7 @@ public class CollisionManager : MonoBehaviour
                             b.transform.position = new Vector3(b.transform.position.x, 0.0f, b.transform.position.z - penetration);
                     }
                 }
+
                 // add the new contact
                 a.contacts.Add(contactB);
                 a.isColliding = true;

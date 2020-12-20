@@ -61,13 +61,13 @@ public class PlayerBehaviour : MonoBehaviour
                 body.velocity = -playerCam.transform.forward * speed * Time.deltaTime;
             }
 
-            body.velocity = Vector3.Lerp(body.velocity, Vector3.zero, 0.95f);
+            body.velocity = Vector3.Lerp(body.velocity, Vector3.zero, 0.98f);
             body.velocity = new Vector3(body.velocity.x, 0.0f, body.velocity.z); // remove y
             
 
             if (Input.GetAxisRaw("Jump") > 0.0f)
             {
-                body.velocity += transform.up * speed * 0.05f * Time.deltaTime;
+                body.velocity += transform.up * speed * 0.07f * Time.deltaTime;
             }
 
             transform.position += body.velocity;
@@ -82,7 +82,7 @@ public class PlayerBehaviour : MonoBehaviour
             // delays firing
             if (Time.frameCount % fireRate == 0)
             {
-
+            
                 var tempBullet = bulletManager.GetBullet(bulletSpawn.position, bulletSpawn.forward);
                 tempBullet.transform.SetParent(bulletManager.gameObject.transform);
             }
